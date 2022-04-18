@@ -11,8 +11,10 @@ exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
     password: bcrypt.hashSync(req.body.password, 8)
   });
+  console.log(user);
   user.save((err, user) => {
     if (err) {
       res.status(500).json({ message: err });

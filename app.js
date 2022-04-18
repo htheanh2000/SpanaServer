@@ -18,7 +18,7 @@ app.use(cors())
 const PORT = process.env.PORT || 3000
 
 // connect db
-mongoose.connect(`mongodb+srv://${db.USERNAME}:${db.PASSWORD}@cluster0.0gk1e.mongodb.net/${db.DB}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`mongodb+srv://${db.USERNAME}:${db.PASSWORD}@spana.yckcm.mongodb.net/${db.DB}`, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=> {
     console.log('Database connected');
   })
@@ -30,8 +30,8 @@ mongoose.connect(`mongodb+srv://${db.USERNAME}:${db.PASSWORD}@cluster0.0gk1e.mon
 require('./server/routes/auth.routes')(app);
 require('./server/routes/user.routes')(app);
 
-app.get("/", (req,res)=> {
-  res.json('Hello world Heroku')
+app.get("/api", (req,res)=> {
+  res.json('Hello world')
 });
 
 app.listen(PORT, ()=> {
