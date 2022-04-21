@@ -94,3 +94,27 @@ exports.updateUser = async (req, res) => {
 }
 
 
+// create salon
+exports.createSalon = async (req, res) => {
+  const {name, slogan, size, type, avatar, description, location, onwner} = req.body
+  const salon = { name, slogan, size, type, avatar, description, location,onwner }
+  await User.findByIdAndUpdate(req.params.id, {
+    $set: updateUser
+  })
+    .then(response => {
+      return res.status(200).json({
+        success: true,
+        message: 'Updated user successful',
+      });
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        success: false,
+        message: 'Server error. Please try again.',
+        error: err.message,
+      });
+
+    })
+}
+
+
