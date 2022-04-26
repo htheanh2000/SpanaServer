@@ -33,6 +33,8 @@ mongoose.connect(`mongodb+srv://${db.USERNAME}:${db.PASSWORD}@spana.yckcm.mongod
 require('./server/routes/auth.routes')(app);
 require('./server/routes/user.routes')(app);
 require('./server/routes/file.routes')(app);
+require('./server/routes/salon.routes')(app);
+require('./server/routes/product.routes')(app);
 
 app.get("/api", (req,res)=> {
   res.json('Hello world')

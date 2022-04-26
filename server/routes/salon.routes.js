@@ -10,4 +10,7 @@ module.exports = function(app) {
   });
   
   app.post("/api/salon/", controller.createSalon)
+  app.put("/api/salon/:id", controller.updateSalon)
+  app.get("/api/salon/:id", controller.getById) 
+  app.get("/api/salon/:id/product", controller.getAllProductById) 
 };

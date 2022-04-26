@@ -1,23 +1,21 @@
 const mongoose = require("mongoose");
-const Salon = mongoose.model(
-  "Salon",
+const Product = mongoose.model(
+  "Product",
   new mongoose.Schema({
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Salon"
     },
     name: String,
-    slogan: String,
-    size: String,
     type: String,
     description: String,
-    address: String,
-    purpose: String,
-    avatar: {
+    price: String,
+    coupon: Number,
+    image: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Image"
       }
     ,
   })
 );
-module.exports = Salon;
+module.exports = Product;
