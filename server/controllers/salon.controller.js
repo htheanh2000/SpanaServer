@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const db = require("../models");
 const Salon = db.salon;
 const Product = db.product;
-
+const ObjectId = mongoose.Types.ObjectId;
 exports.createSalon = (req, res) => {
     const { name, slogan, size, type, description, address, purpose, avatar } = req.body
     const salon = new Salon({
@@ -65,7 +65,17 @@ exports.getAllProductById = async (req, res) => {
     const { id } = req.params
     Product.aggregate([
         {
-            $match: { owner: id }
+            $match: {
+                owner: ObjectId(id)
+            },
+        },
+        { $project: {  "__v": 0 , "owner": 0} },
+        {
+            $group: {
+                _id: "$type",
+                count: { $sum: 1 },
+                data: { $push: '$$ROOT' }
+            },
         },
     ])
         .then(response => {
