@@ -9,7 +9,7 @@ const ObjectId = mongoose.Types.ObjectId;
 
 exports.signup = (req, res) => {
   const user = new User({
-    name: req.body.name,
+    name: req.body.username,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     password: bcrypt.hashSync(req.body.password, 8)
@@ -62,11 +62,10 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   console.log('signin body', req.body);
   User.findOne({
-    username: req.body.username
+    email: req.body.username
   })
     .populate("roles", "-__v")
     .exec(async (err, user) => {
-      console.log('after exec', err, user);
       if (err) {
         return res.status(500).json({ message: err });
       }
